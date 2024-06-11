@@ -1,0 +1,71 @@
+-----Born2beroot-----
+1.Download Debian
+	1.1.Preparar as pastas para armazenar a VM
+2.Criar a VM na Vbox
+	2.1.Defenir a memoria o tmanho do virtualhd
+	2.3.Defenir o Debian no Storage Vbox e o BridgeAdaptor na Network
+3.Configurar a VM
+	3.1.Instalar o Debian
+	3.2.Defenir as particoes Manual (video)
+4.Configurar a VM
+	4.1.Instalar Sudo
+		4.1.1.Adicionar user ao grupo sudo
+		4.1.2.Criar sudo.log
+			/var/log/sudo/sudo.log --criar /sudo/sudo.log
+		4.1.3.Configurar sudo group
+			vi /etc/sudoers ---editar file
+5.Instalar Git e Vim (talvez antes do sudo)
+6.Instalar SSH (Secure Shell)
+	6.1.Configurar ssh
+		/etc/ssh/sshd_config --editar port e permissao root
+		/etc/ssh/ssh_config --editar port
+7.Instalar UFW (uncomplicated firewall)
+	ufw enable; ufw allow 4242; ufw status
+8.Conectar via ssh
+9.Defenir politica password (apt libpam-pwquality)
+	forca da pass ---vim /etc/pam.d/common-password ---editar
+	tempo da pass ---vim /etc/login.defs ---editar
+10.Criar novo user
+11.Criar novo grupo
+12.Defenir CRON
+	12.1.Instalar net-tools (netstat)
+	sudo crontab -u root -e ---> o "-u root" define o user e -e permite editar o crontab (-l mostra a lista de tarefas)
+	12.1.Criar o script Monitoring.sh e o Sleep.sh
+		/usr/local/bin/monitoring.sh --criar touch e permissoes chmod 777
+		/usr/local/bin/sleep.sh --criar touch e permissoes
+	12.2.Adicionar permissao ao sudo para monitoring.sh e sleep.sh - para que possam ser executados sem ser preciso sudo! (sudo visudo)
+		
+		
+
+
+Comandos importantes
+lsblk				- ver as particoes
+su -				- login como root
+adduser <username> sudo		- adicionar user ao sudo
+userdel -r <username> 		- remover user (-r) remove as pastas do user
+getent group sudo		- verificar os users do grupo
+sudo -v				- verifica sudopowers
+apt ou apt-get ou aptitude	- instalar pacotes
+dpkg -l | grep <nome>		- lista de pacotes, grep para o pacote procurado
+sudo service ssh status		- ver status ssh
+sudo service ssh restart	- restar ssh
+sudo ufw allow <port>		- permitir porta na ufw
+sudo ufw status numbered	- verificar status ufw
+sudo ufw delete <number>	- apagar permissao
+ssh <username@ip> -p <port>	- conectar via ssh, a porta e 4242
+hostname -I			- mostra o IP
+sudo adduser <username>		- adicionar user
+getent passwd <username>	- verifica os users
+sudo chage -l <username>	- info do tempo da pass
+sudo addgroup <groupname>	- criar novo grupo
+sudo adduser <username> <groupname> - adiconar user ao grupo
+getent group <groupname>	- verifca membros do grupo
+sudo crontab -u root -e ---> o "-u root" define o user e -e permite editar o crontab (-l mostra a lista de tarefas)
+sudo passwd <username>		- altera a pass do user
+uname -a			- mostra os sistema operativo e tudo! -v mostra OS
+hostnamectl set-hostname <nome>	- altera o hostname
+whoami				- mostra user
+sudo - <user>			- muda o user 
+
+
+	 
